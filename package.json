@@ -1,0 +1,56 @@
+{
+    "name": "wick.db",
+    "version": "1.1.0",
+    "description": "A simple, lightweight, and versatile JSON-based database for Node.js, proudly brought to you by Wick Studio. Wick.db is designed for small to medium-scale projects requiring a straightforward, file-based database solution with an emphasis on ease of use and minimal setup.",
+    "main": "src/index.js",
+    "scripts": {
+      "start": "node src/index.js",
+      "test": "jest",
+      "build": "echo 'Build process is yet to be defined'",
+      "lint": "eslint src/**/*.js",
+      "format": "prettier --write 'src/**/*.js'"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/wickstudio/wick.db.git"
+    },
+    "keywords": [
+      "database",
+      "db",
+      "nodejs",
+      "simple-db",
+      "lightweight-db",
+      "json-db"
+    ],
+    "author": "Wick Studio <info@wickdev.xyz>",
+    "contributors": [],
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/wickstudio/wick.db/issues"
+    },
+    "homepage": "https://github.com/wickstudio/wick.db#readme",
+    "devDependencies": {
+      "jest": "^27.5.1",
+      "eslint": "^8.0.0",
+      "prettier": "^2.0.0"
+    },
+    "jest": {
+      "testEnvironment": "node"
+    },
+    "eslintConfig": {
+      "extends": "eslint:recommended",
+      "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+      },
+      "env": {
+        "node": true,
+        "jest": true
+      }
+    },
+    "prettier": {
+      "semi": true,
+      "singleQuote": true
+    }
+  }
+  
