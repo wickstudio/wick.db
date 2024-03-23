@@ -32,7 +32,7 @@ const db = new WickDB('./wick.json');
 
 async function demo() {
     // Setting a value
-    await db.set('wick', 'studio');
+    await db.set('hello', 'world');
     console.log('Value set!');
 
     // Getting a value
