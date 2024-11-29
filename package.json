@@ -1,0 +1,45 @@
+{
+  "name": "wick.db",
+  "version": "1.0.0",
+  "description": "A powerful, easy-to-use, and feature-rich SQLite-based key-value database for Node.js, Built with TypeScript.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run build"
+  },
+  "keywords": [
+    "database",
+    "sqlite",
+    "key-value",
+    "typescript",
+    "wick.db",
+    "nodejs",
+    "async"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wickstudio/wick.db.git"
+  },
+  "author": "Wick Studio <info@wickstudio.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/wickstudio/wick.db#readme",
+  "bugs": {
+    "url": "https://github.com/wickstudio/wick.db/issues",
+    "email": "info@wickstudio.com"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.5.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^18.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.0.0",
+    "typescript": "^5.0.0"
+  }
+}
