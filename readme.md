@@ -16,6 +16,7 @@
 - [Introduction](#introduction)
 - [Features](#features)
 - [Installation](#installation)
+- [Compatibility](#compatibility)
 - [Quick Start](#quick-start)
 - [Configuration Options](#configuration-options)
 - [API Reference](#api-reference)
@@ -41,6 +42,8 @@
   - [Advanced Operations](#advanced-operations)
   - [Integrating with a Discord Bot](#integrating-with-a-discord-bot)
 - [Best Practices](#best-practices)
+- [Performance](#performance)
+- [Security](#security)
 - [Contributing](#contributing)
 - [License](#license)
 - [Connect with Us](#connect-with-us)
@@ -65,6 +68,8 @@ WickDB is a lightweight yet powerful key-value store built on top of SQLite, des
 - **Customizable Logging**: Multiple log levels to suit your debugging and monitoring needs.
 - **Secure**: Handles data serialization and deserialization securely.
 - **Performance Optimized**: Efficient data handling with in-memory caching for high-speed operations.
+- **Flexible Configuration**: Customize database paths, table names, and more.
+- **Comprehensive Documentation**: Clear and detailed documentation to get you started quickly.
 
 ---
 
@@ -84,10 +89,22 @@ yarn add wick.db better-sqlite3
 
 ---
 
+## ⚙️ Compatibility
+
+WickDB is compatible with the following Node.js versions:
+
+- **Node.js v16**
+- **Node.js v18**
+- **Node.js v20**
+
+Ensure you are using one of these supported versions to guarantee optimal performance and compatibility.
+
+---
+
 ## ⚡ Quick Start
 
 ```typescript
-import WickDB from 'wick.db';
+import { WickDB } from 'wick.db';
 
 const db = new WickDB({ logLevel: 'info' });
 
@@ -168,6 +185,9 @@ const db = new WickDB({
 - **`dbPath`**: The file path for the SQLite database.
 - **`logLevel`**: Sets the logging level. Options are `'debug'`, `'info'`, `'warn'`, `'error'`, `'none'`.
 - **`tableName`**: Sets a custom table name for data storage.
+- **`cacheEnabled`**: (Optional) Enables or disables in-memory caching. Default is `true`.
+- **`encryption`**: (Optional) Enables encryption for the database. Requires additional setup.
+- **`timeout`**: (Optional) Sets the timeout for database operations in milliseconds. Default is `5000`.
 
 ---
 
@@ -411,7 +431,7 @@ const users = db.startsWith('user_');
 
 ---
 
-## Events
+## 🔔 Events
 
 WickDB extends Node.js's `EventEmitter` class, allowing you to listen for database events.
 
@@ -420,6 +440,7 @@ WickDB extends Node.js's `EventEmitter` class, allowing you to listen for databa
 - `'set'`: Emitted when a key is set.
 - `'delete'`: Emitted when a key is deleted.
 - `'clear'`: Emitted when the database is cleared.
+- `'expire'`: Emitted when a key expires.
 
 **Example:**
 
@@ -435,6 +456,10 @@ db.on('delete', (key) => {
 db.on('clear', () => {
   console.log('Database was cleared.');
 });
+
+db.on('expire', (key) => {
+  console.log(`Key "${key}" has expired.`);
+});
 ```
 
 ---
@@ -444,7 +469,7 @@ db.on('clear', () => {
 ### **Basic Usage**
 
 ```typescript
-import WickDB from 'wick.db';
+import { WickDB } from 'wick.db';
 
 const db = new WickDB();
 
@@ -553,6 +578,38 @@ client.login('YOUR_DISCORD_BOT_TOKEN');
 
 ---
 
+## 🚀 Performance
+
+WickDB is optimized for high-speed operations with efficient data handling and in-memory caching. It leverages SQLite's performance benefits, ensuring rapid read and write operations even with large datasets. Bulk operations are particularly optimized to reduce latency and improve throughput.
+
+**Key Performance Features:**
+
+- **In-Memory Caching**: Accelerates data retrieval and manipulation.
+- **Asynchronous Operations**: Ensures non-blocking database interactions.
+- **Optimized Queries**: Minimizes database access times with efficient querying mechanisms.
+
+---
+
+## 🔒 Security
+
+Security is paramount when handling data. WickDB ensures secure data serialization and deserialization, preventing common vulnerabilities such as injection attacks. Additionally, optional encryption can be enabled to protect sensitive data at rest.
+
+**Security Features:**
+
+- **Data Validation**: Ensures only valid and expected data is stored.
+- **Optional Encryption**: Protects data using industry-standard encryption algorithms.
+- **Access Control**: Manage and restrict access to the database as needed.
+- **Regular Updates**: Stay protected with ongoing security updates and patches.
+
+**Best Practices:**
+
+- **Encrypt Sensitive Data**: Use the `encryption` configuration option for sensitive information.
+- **Validate Inputs**: Always validate and sanitize data before storing.
+- **Limit Access**: Restrict database access to authorized components or services.
+- **Regular Backups**: Maintain secure backups to prevent data loss.
+
+---
+
 ## 💡 Best Practices
 
 - **Error Handling**: Always wrap database operations in try-catch blocks to handle potential errors.
@@ -562,6 +619,7 @@ client.login('YOUR_DISCORD_BOT_TOKEN');
 - **Security**: Ensure sensitive data is encrypted if necessary, and manage access appropriately.
 - **Modular Design**: Structure your application to separate database logic from business logic for maintainability.
 - **Logging**: Use appropriate log levels to monitor your application without overwhelming your logs.
+- **Stay Updated**: Keep WickDB and its dependencies updated to benefit from the latest features and security patches.
 
 ---
 
@@ -572,7 +630,7 @@ Contributions are welcome! If you'd like to contribute to **WickDB**, please fol
 1. **Fork the Repository**: Click the [Fork](https://github.com/wickstudio/wick.db/fork) button at the top right of the repository page.
 2. **Clone Your Fork**:
    ```bash
-   git clone https://github.com/wickstudio/wick.db.git
+   git clone https://github.com/your-username/wick.db.git
    ```
 3. **Create a New Branch**:
    ```bash
@@ -589,7 +647,14 @@ Contributions are welcome! If you'd like to contribute to **WickDB**, please fol
    ```
 7. **Open a Pull Request**: Go to the original repository and click on "Compare & pull request".
 
-Please ensure your code follows the project's coding standards and passes all tests. For major changes, open an issue first to discuss what you'd like to change.
+Please ensure your code follows the project's [coding standards](https://github.com/wickstudio/wick.db/blob/main/CODE_OF_CONDUCT.md) and passes all tests. For major changes, open an issue first to discuss what you'd like to change.
+
+**Guidelines:**
+
+- **Code Quality**: Write clean, readable, and maintainable code.
+- **Documentation**: Update documentation as necessary to reflect your changes.
+- **Testing**: Include tests for new features or bug fixes.
+- **Respect**: Be respectful and considerate in all interactions.
 
 ---
 
@@ -604,6 +669,8 @@ WickDB is released under the [MIT License](https://opensource.org/licenses/MIT).
 - **Discord**: [Join our community](https://discord.gg/wicks)
 - **GitHub**: [Visit our repository](https://github.com/wickstudio)
 - **Website**: [Wick Studio](https://wick-studio.com/)
+- **Twitter**: [@WickStudio](https://twitter.com/wickstudio)
+- **YouTube**: [Wick Studio Channel](https://youtube.com/wickstudio)
 
 ---
 
