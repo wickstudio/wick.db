@@ -508,7 +508,7 @@ Here's how you might integrate WickDB into a Discord bot using `discord.js`:
 
 ```javascript
 const { Client, GatewayIntentBits, EmbedBuilder } = require('discord.js');
-const WickDB = require('wick.db');
+const { WickDB } = require('wick.db');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 const db = new WickDB();
