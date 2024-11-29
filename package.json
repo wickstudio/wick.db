@@ -1,6 +1,6 @@
 {
   "name": "wick.db",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A powerful, easy-to-use, and feature-rich SQLite-based key-value database for Node.js, Built with TypeScript.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
